@@ -1,24 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-management-service-deployment
+  name: todo-user-services-deployment
   labels:
-    app: user-management-service
+    app: todo-user-services
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: user-management-service
+      app: todo-user-services
   template:
     metadata:
       labels:
-        app: user-management-service
+        app: todo-user-services
     spec:
       containers:
-      - name: user-management-service
-        image: your-docker-repo/user-management-service:latest  # Replace with your Docker image
+      - name: todo-user-services
+        image: your-dockerhub-username/todo-user-services:latest
         ports:
-        - containerPort: 3001
+        - containerPort: 4001
         env:
-        - name: MONGO_URL
-          value: "mongodb://mongo-service:27017/users"  # MongoDB connection string
+        - name: NODE_ENV
+          value: "development"
+        - name: PORT
+          value: "4001"
+        - name: TODOS_API_KEY
+          value: "8fcbdb72c9d74a36be7413388341a6c0d547dd2ade2a4ee2aa13e9b16c12a63b"
+        - name: TOKEN_SECRET_KEY
+          value: "f04(/&(&/(0ab1e-c2f0=)(€/(#4c4e-889e-541kdshdsnv87234b8/hd+???=(!--.4eb9e5017"
